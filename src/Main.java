@@ -1,5 +1,6 @@
 public class Main {
+    static Access access = new Access();
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        access.getAccess();
     }
 }
