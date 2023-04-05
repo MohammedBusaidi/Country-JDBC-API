@@ -67,6 +67,29 @@ public class JDBC {
             System.err.println(ex);
         }
     }
+    public void backupDatabase() {
+        String url = "jdbc:sqlserver://" + "localhost:1433;" + "encrypt=true;" + "trustServerCertificate=true";
+        Connection con = null;
+        try {
+            Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+            DriverManager.registerDriver(driver);
+
+            url += ";databaseName=" + Access.databaseName;
+            con = DriverManager.getConnection(url, Access.user, Access.pass);
+            Statement st = con.createStatement();
+
+            String sql = "BACKUP DATABASE " + Access.databaseName + "\r\n"
+                    + "TO DISK = 'C:\\Users\\moody\\OneDrive\\Desktop\\java\\Countries-JDBC-API" + Access.databaseName + ".bak'\r\n"
+                    + "WITH DESCRIPTION = 'Full Backup for" + Access.databaseName + " Database'";
+            st.executeUpdate(sql);
+
+            System.out.println("BACK UP SUCCESSFUL!");
+            con.close();
+            st.close();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
     public void removeTable() {
         String url = "jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true";
         Connection con = null;

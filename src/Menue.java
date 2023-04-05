@@ -33,6 +33,7 @@ public class Menue {
                         newJDBC.initializeDatabase();
                         break;
                     case 2:
+                        newJDBC.backupDatabase();
                         break;
                     case 3:
                         newJDBC.removeTable();
