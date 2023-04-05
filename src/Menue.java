@@ -12,7 +12,7 @@ public class Menue {
             menueOptions.put(1, "Initialize Database");
             menueOptions.put(2, "Backup Database");
             menueOptions.put(3, "Remove Table");
-            menueOptions.put(4, "Show all universities");
+            menueOptions.put(4, "Show all Countries");
             menueOptions.put(5, "fetch Data");
             menueOptions.put(6, "Search by: ");
             menueOptions.put(7, "Dump data into file");
@@ -38,7 +38,6 @@ public class Menue {
                         newJDBC.removeTable();
                         break;
                     case 4:
-                        newAPI.getData();
                         break;
                     case 5:
                         boolean fetchLoop = true;
