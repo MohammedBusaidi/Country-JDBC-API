@@ -68,24 +68,29 @@ public class JDBC {
         }
     }
     public void backupDatabase() {
+        // create a new file
         String url = "jdbc:sqlserver://" + "localhost:1433;" + "encrypt=true;" + "trustServerCertificate=true";
         Connection con = null;
         try {
+
             Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
             DriverManager.registerDriver(driver);
 
-            url += ";databaseName=" + Access.databaseName;
             con = DriverManager.getConnection(url, Access.user, Access.pass);
-            Statement st = con.createStatement();
 
             String sql = "BACKUP DATABASE " + Access.databaseName + "\r\n"
-                    + "TO DISK = 'C:\\Users\\moody\\OneDrive\\Desktop\\java\\Countries-JDBC-API" + Access.databaseName + ".bak'\r\n"
+                    + "C:\\Users\\moody\\OneDrive\\Desktop\\java\\Countries-JDBC-API\\country.bak'\r\n"
                     + "WITH DESCRIPTION = 'Full Backup for" + Access.databaseName + " Database'";
-            st.executeUpdate(sql);
 
-            System.out.println("BACK UP SUCCESSFUL!");
+
+            PreparedStatement statement = con.prepareStatement(sql);
+
+            statement.executeUpdate();
+
+            statement.close();
             con.close();
-            st.close();
+
+            System.out.println("Backup Successfully :)");
         } catch (Exception ex) {
             System.err.println(ex);
         }

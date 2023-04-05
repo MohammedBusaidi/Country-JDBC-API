@@ -39,6 +39,7 @@ public class Menue {
                         newJDBC.removeTable();
                         break;
                     case 4:
+                        newAPI.showAllCountries();
                         break;
                     case 5:
                         boolean fetchLoop = true;
